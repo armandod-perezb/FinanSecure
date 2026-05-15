@@ -1,0 +1,18 @@
+=== INFOSTEALER DEFENSIVE SIMULATION ===
+[2026-05-15 00:00:48] Inicio de simulacion defensiva (sin robo real, sin exfiltracion real).
+[2026-05-15 00:00:48] Decoy creado en: .\lab-output\decoy-data\decoy_credentials.txt
+[2026-05-15 00:00:48] Simulando descubrimiento de rutas comunes de navegador.
+[2026-05-15 00:00:48] Ruta encontrada (solo inventario): C:\Users\arman\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies
+[2026-05-15 00:00:48] Ruta encontrada (solo inventario): C:\Users\arman\AppData\Local\Microsoft\Edge\User Data\Default\Network\Cookies
+[2026-05-15 00:00:48] Ruta no encontrada: C:\Users\arman\AppData\Roaming\Mozilla\Firefox\Profiles
+[2026-05-15 00:00:48] Simulando lectura de archivo sensible (decoy).
+[2026-05-15 00:00:48] Contenido decoy leido: usuario_demo=analista@finansecure.local
+[2026-05-15 00:00:48] Contenido decoy leido: password_demo=PasswordFicticio123!
+[2026-05-15 00:00:48] Contenido decoy leido: token_demo=eyJhbGciOiJIUzI1NiJ9.ficticio
+[2026-05-15 00:00:48] Simulando actividad de empaquetado de datos (ficticia).
+[2026-05-15 00:00:48] Archivo staged creado: .\lab-output\staged_bundle.txt
+[2026-05-15 00:00:48] Simulando intento de conexion saliente sospechosa hacia IP de pruebas RFC5737.
+[2026-05-15 00:01:10] Resultado conexion: TcpTestSucceeded=False
+[2026-05-15 00:01:10] Generando artefactos finales de evidencia.
+[2026-05-15 00:01:10] Resumen generado en: .\lab-output\simulation_summary.txt
+[2026-05-15 00:01:10] Simulacion finalizada.

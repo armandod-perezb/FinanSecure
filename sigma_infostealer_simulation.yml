@@ -1,0 +1,68 @@
+title: PowerShell Execution of InfoStealer Defensive Simulation
+id: 4f6f6c8b-c9ef-4e7d-b8f5-0bd8f9e8a101
+status: experimental
+description: Detects execution of the defensive script infostealer_simulator.ps1.
+author: FinanSecure Lab
+date: 2026-05-15
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_image:
+    Image|endswith: '\powershell.exe'
+  selection_cmd:
+    CommandLine|contains|all:
+      - 'infostealer_simulator.ps1'
+      - '-OutputDir'
+  condition: selection_image and selection_cmd
+falsepositives:
+  - Authorized purple-team or awareness simulation runs.
+level: medium
+tags:
+  - attack.t1059.001
+---
+title: Decoy Credential File Access in InfoStealer Simulation
+id: 5a8d8ea6-6f6f-4f66-bcf7-2cfbfe381002
+status: experimental
+description: Detects creation or modification of decoy/staged files used by the defensive simulation.
+author: FinanSecure Lab
+date: 2026-05-15
+logsource:
+  product: windows
+  category: file_event
+detection:
+  selection_paths:
+    TargetFilename|contains:
+      - '\lab-output\decoy-data\decoy_credentials.txt'
+      - '\lab-output\staged_bundle.txt'
+      - '\lab-output\infostealer_simulation.log'
+      - '\lab-output\simulation_summary.txt'
+  condition: selection_paths
+falsepositives:
+  - Lab preparation scripts writing in the same path.
+level: low
+tags:
+  - attack.t1083
+  - attack.t1005
+---
+title: Suspicious Outbound Connection Attempt from PowerShell to RFC5737 Test IP
+id: b54c6625-c8a9-49f8-9160-7d3345223003
+status: experimental
+description: Detects outbound connection attempts to 198.51.100.10:443 during simulation.
+author: FinanSecure Lab
+date: 2026-05-15
+logsource:
+  product: windows
+  category: network_connection
+detection:
+  selection_proc:
+    Image|endswith: '\powershell.exe'
+  selection_dst:
+    DestinationIp: '198.51.100.10'
+    DestinationPort: 443
+  condition: selection_proc and selection_dst
+falsepositives:
+  - Controlled network testing in isolated labs.
+level: high
+tags:
+  - attack.t1041

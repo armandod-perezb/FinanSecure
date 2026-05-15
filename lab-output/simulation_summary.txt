@@ -1,0 +1,6 @@
+Simulacion InfoStealer ejecutada (defensiva).
+Cookies detectadas (ficticio): 14
+Tokens detectados (ficticio): 6
+Credenciales simuladas (ficticio): 3
+SIEM: comportamiento anomalo esperado por secuencia de procesos/archivos/red.
+Firewall/EDR: alertas esperadas por intento de conexion y acceso a rutas de navegador.
