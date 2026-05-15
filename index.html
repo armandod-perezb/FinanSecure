@@ -77,45 +77,45 @@
       <div class="hero">
         <div class="warning-card">
           <span class="badge danger-badge">Pagina falsa educativa</span>
-          <h1>Portal de verificacion de cuenta</h1>
+          <h1>Portal de actualizacion de seguridad</h1>
           <p>
-            Esta seccion representa una copia visual utilizada unicamente para concientizacion.
-            En un ataque real, una pagina similar podria intentar capturar credenciales o inducir al usuario
-            a descargar un archivo malicioso.
+            Esta seccion representa una pagina falsa utilizada unicamente para concientizacion.
+            Flujo simulado: usuario recibe phishing, entra al sitio falso y es inducido a descargar
+            un supuesto "Actualizador de seguridad".
           </p>
-          <div class="fake-url">https://finansecure-verificacion.example/login</div>
+          <div class="fake-url">https://finansecure-security-update.example/login</div>
           <p>
-            Observa senales sospechosas como dominios extranos, mensajes urgentes, formularios inesperados
-            y solicitudes de descarga fuera del portal oficial.
+            Observa senales sospechosas como dominios extranos, mensajes urgentes y solicitudes de descarga
+            fuera del portal oficial.
           </p>
         </div>
 
         <div class="login-card">
-          <h2>Verificacion urgente</h2>
-          <p>Formulario educativo. No introduzcas datos reales.</p>
-          <form onsubmit="phishingSimulation(event)">
-            <label>Correo corporativo</label>
-            <input type="email" placeholder="usuario@finansecure.com" required />
-            <label>Contrasena</label>
-            <input type="password" placeholder="No ingresar contrasenas reales" required />
-            <button class="btn btn-danger" type="submit">Verificar cuenta</button>
-          </form>
+          <h2>Actualizacion obligatoria</h2>
+          <p>Demostracion academica. No se descarga ni ejecuta software real.</p>
+          <button class="btn btn-danger" type="button" onclick="downloadSimulation()">Descargar "Actualizador de seguridad"</button>
+          <button class="btn" id="executeBtn" type="button" onclick="executeSimulation()" style="display:none; margin-top:10px;">Ejecutar archivo simulado</button>
           <div class="result-box" id="resultBox">
-            <strong>Simulacion de phishing detectada.</strong><br />
-            En un ataque real, las credenciales ingresadas podrian ser robadas y usadas para acceder a correo,
-            VPN, aplicaciones internas o Active Directory. En esta practica no se almaceno ningun dato.
+            <strong>Simulacion InfoStealer ejecutada.</strong><br />
+            Cookies detectadas: 14 (ficticio)<br />
+            Tokens detectados: 6 (ficticio)<br />
+            Credenciales simuladas: 3 (ficticio)<br /><br />
+            SIEM: comportamiento anomalo detectado en endpoint de usuario.<br />
+            Firewall/EDR: alertas generadas por ejecucion sospechosa y exfiltracion simulada.
           </div>
         </div>
       </div>
 
       <div class="info-card">
-        <h2>Senales de alerta para el usuario</h2>
+        <h2>Flujo de la simulacion de InfoStealer</h2>
         <ul class="checklist">
-          <li>El dominio no corresponde exactamente al dominio oficial de la empresa.</li>
-          <li>El mensaje usa urgencia para presionar al usuario.</li>
-          <li>Solicita credenciales fuera del canal corporativo habitual.</li>
-          <li>Puede contener errores visuales, enlaces acortados o certificados sospechosos.</li>
-          <li>En un escenario real podria intentar descargar archivos maliciosos o ejecutar scripts ocultos.</li>
+          <li>Usuario recibe phishing.</li>
+          <li>Usuario entra a pagina falsa.</li>
+          <li>Pagina sugiere descargar "Actualizador de seguridad".</li>
+          <li>Usuario ejecuta archivo simulado.</li>
+          <li>Se muestra "Simulacion InfoStealer ejecutada" con datos ficticios.</li>
+          <li>SIEM detecta comportamiento anomalo.</li>
+          <li>Firewall/EDR generan alertas.</li>
         </ul>
       </div>
     </section>
@@ -139,10 +139,12 @@
       event.target.reset();
     }
 
-    function phishingSimulation(event) {
-      event.preventDefault();
+    function downloadSimulation() {
+      document.getElementById('executeBtn').style.display = 'inline-block';
+    }
+
+    function executeSimulation() {
       document.getElementById('resultBox').style.display = 'block';
-      event.target.reset();
     }
   </script>
 </body>
