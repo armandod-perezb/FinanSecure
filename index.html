@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanSecure S.A. | Simulación Académica Segura</title>
+  <style>
+    :root {
+      --primary: #0B2E59;
+      --secondary: #0F766E;
+      --accent: #F59E0B;
+      --danger: #B91C1C;
+      --bg: #F4F7FB;
+      --card: #FFFFFF;
+      --text: #1F2937;
+      --muted: #6B7280;
+      --border: #E5E7EB;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 18px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--secondary), #22C55E);
+      display: grid;
+      place-items: center;
+      font-weight: bold;
+    }
+
+    nav button {
+      border: 1px solid rgba(255,255,255,0.35);
+      background: transparent;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      margin-left: 8px;
+      font-weight: bold;
+    }
+
+    nav button.active,
+    nav button:hover {
+      background: white;
+      color: var(--primary);
+    }
+
+    main {
+      padding: 40px 8%;
+    }
+
+    .page {
+      display: none;
+      animation: fade 0.25s ease-in-out;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .hero-card, .login-card, .info-card, .warning-card {
+      background: var(--card);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+      border: 1px solid var(--border);
+    }
+
+    h1 {
+      color: var(--primary);
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    p {
+      line-height: 1.65;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #DBEAFE;
+      color: var(--primary);
+      font-weight: bold;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+    }
+
+    .danger-badge {
+      background: #FEE2E2;
+      color: var(--danger);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .info-card h3 {
+      color: var(--secondary);
+      margin-bottom: 8px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 14px 0 6px;
+      color: var(--text);
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      outline: none;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(15,118,110,0.12);
+    }
+
+    .btn {
+      width: 100%;
+      margin-top: 18px;
+      padding: 14px;
+      border: none;
+      border-radius: 14px;
+      background: var(--secondary);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      opacity: 0.93;
+    }
+
+    .btn-danger {
+      background: var(--danger);
+    }
+
+    .notice {
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #ECFDF5;
+      color: #065F46;
+      font-size: 0.92rem;
+    }
+
+    .simulation-banner {
+      background: #FEF3C7;
+      border: 1px solid #F59E0B;
+      color: #92400E;
+      padding: 14px 18px;
+      border-radius: 14px;
+      margin-bottom: 24px;
+      font-weight: bold;
+    }
+
+    .fake-url {
+      background: #111827;
+      color: #E5E7EB;
+      padding: 12px 16px;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      font-family: Consolas, monospace;
+      font-size: 0.95rem;
+    }
+
+    .result-box {
+      display: none;
+      margin-top: 18px;
+      background: #FEE2E2;
+      border: 1px solid #FCA5A5;
+      color: #7F1D1D;
+      padding: 18px;
+      border-radius: 14px;
+      line-height: 1.6;
+    }
+
+    .checklist {
+      margin-top: 14px;
+      padding-left: 18px;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    footer {
+      padding: 20px 8%;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 850px) {
+      header, .hero {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">FS</div>
+      <span>FinanSecure S.A.</span>
+    </div>
+    <nav>
+      <button class="active" onclick="showPage('legitima', this)">Portal legítimo</button>
+      <button onclick="showPage('simulacion', this)">Simulación phishing</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="legitima" class="page active">
+      <div class="hero">
+        <div class="hero-card">
+          <span class="badge">Portal corporativo seguro</span>
+          <h1>Gestión financiera protegida para empresas</h1>
+          <p>
+            FinanSecure S.A. ofrece servicios de administración de pagos electrónicos,
+            monitoreo de transacciones y protección de información financiera para clientes corporativos.
+          </p>
+          <p>
+            Este portal representa la página legítima de la empresa dentro de la simulación académica.
+            Su objetivo es mostrar cómo debería verse un acceso corporativo confiable.
+          </p>
+        </div>
+
+        <div class="login-card">
+          <h2>Acceso corporativo</h2>
+          <p>Ingrese con su cuenta institucional. Este formulario es solo visual y no envía información.</p>
+          <form onsubmit="legitLogin(event)">
+            <label>Correo corporativo</label>
+            <input type="email" placeholder="usuario@finansecure.com" required />
+            <label>Contraseña</label>
+            <input type="password" placeholder="••••••••" required />
+            <button class="btn" type="submit">Ingresar de forma segura</button>
+          </form>
+          <div class="notice" id="legitNotice" style="display:none;">
+            Simulación: el portal legítimo no almacena credenciales en esta práctica.
+          </div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="info-card">
+          <h3>Autenticación segura</h3>
+          <p>Uso de MFA, contraseñas robustas y políticas de acceso centralizadas mediante Active Directory.</p>
+        </div>
+        <div class="info-card">
+          <h3>Monitoreo continuo</h3>
+          <p>Eventos enviados al SIEM para detectar accesos anómalos, intentos fallidos y tráfico sospechoso.</p>
+        </div>
+        <div class="info-card">
+          <h3>Protección de endpoints</h3>
+          <p>Equipos corporativos protegidos con EDR/XDR para identificar comportamientos asociados a malware.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="simulacion" class="page">
+      <div class="simulation-banner">
+        SIMULACIÓN ACADÉMICA SEGURA: esta página no roba credenciales, no descarga archivos y no ejecuta malware.
+      </div>
+
+      <div class="hero">
+        <div class="warning-card">
+          <span class="badge danger-badge">Página falsa educativa</span>
+          <h1>Portal de verificación de cuenta</h1>
+          <p>
+            Esta sección representa una copia visual utilizada únicamente para concientización.
+            En un ataque real, una página similar podría intentar capturar credenciales o inducir al usuario
+            a descargar un archivo malicioso.
+          </p>
+          <div class="fake-url">https://finansecure-verificacion.example/login</div>
+          <p>
+            Observa señales sospechosas como dominios extraños, mensajes urgentes, formularios inesperados
+            y solicitudes de descarga fuera del portal oficial.
+          </p>
+        </div>
+
+        <div class="login-card">
+          <h2>Verificación urgente</h2>
+          <p>Formulario educativo. No introduzcas datos reales.</p>
+          <form onsubmit="phishingSimulation(event)">
+            <label>Correo corporativo</label>
+            <input type="email" placeholder="usuario@finansecure.com" required />
+            <label>Contraseña</label>
+            <input type="password" placeholder="No ingresar contraseñas reales" required />
+            <button class="btn btn-danger" type="submit">Verificar cuenta</button>
+          </form>
+          <div class="result-box" id="resultBox">
+            <strong>Simulación de phishing detectada.</strong><br />
+            En un ataque real, las credenciales ingresadas podrían ser robadas y usadas para acceder a correo,
+            VPN, aplicaciones internas o Active Directory. En esta práctica no se almacenó ningún dato.
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h2>Señales de alerta para el usuario</h2>
+        <ul class="checklist">
+          <li>El dominio no corresponde exactamente al dominio oficial de la empresa.</li>
+          <li>El mensaje usa urgencia para presionar al usuario.</li>
+          <li>Solicita credenciales fuera del canal corporativo habitual.</li>
+          <li>Puede contener errores visuales, enlaces acortados o certificados sospechosos.</li>
+          <li>En un escenario real podría intentar descargar archivos maliciosos o ejecutar scripts ocultos.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Proyecto académico sobre InfoStealers, phishing y arquitectura defensiva. No usar con fines maliciosos.
+  </footer>
+
+  <script>
+    function showPage(pageId, button) {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+    }
+
+    function legitLogin(event) {
+      event.preventDefault();
+      document.getElementById('legitNotice').style.display = 'block';
+      event.target.reset();
+    }
+
+    function phishingSimulation(event) {
+      event.preventDefault();
+      document.getElementById('resultBox').style.display = 'block';
+      event.target.reset();
+    }
+  </script>
+</body>
+</html>
